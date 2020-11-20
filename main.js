@@ -1,5 +1,7 @@
-const readline = require("readline");
-const https = require('https')
+import readline from "readline";//const readline = require("readline");
+
+import * as lists from "./DataLists.js";
+import * as game from "./GameInfo.js";
 
 // Setup console read
 const rl = readline.createInterface({
@@ -7,37 +9,15 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("api key: ", key =>{getSummonerInfo(key)})
+
+//rl.question("api key: ", key =>{lists.getQueueList()})
 
 function getSummonerInfo(key) {
-    console.log(key);
-
-
-    const options = {
-        hostname: 'na1.api.riotgames.com',
-        path: '/lol/summoner/v4/summoners/by-name/The%20Crafty%20Corki?api_key=' + key,
-        method: 'GET'
-    }
-
-    const req = https.request(options, res => {
-        console.log(`statusCode: ${res.statusCode}`)
-
-        // Data is received as binary, store it and convert to json
-        let data = [];
-        res.on('data', d => {
-            data.push(d);
-        })
-        .on('end', () => {
-            let buffer = Buffer.concat(data);
-            let strBuffer = buffer.toString('utf8');
-            let json = JSON.parse(strBuffer)
-            console.log(json);
-        });
-    })
-
-    req.on('error', error => {
-        console.error(error)
-    })
-
-    req.end()
+    apiGet('/lol/summoner/v4/summoners/by-name/The%20Crafty%20Corki', key);
 }
+
+let queueList = await lists.getQueueList();
+console.log(queueList);
+
+let queueInfo = await game.getQueue(700);
+console.log(queueInfo);
