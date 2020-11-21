@@ -3,9 +3,13 @@ import {promisify} from "util";
 const sleep = promisify(setTimeout);
 
 export class Request {
+    // Throttle info
     static maxTries = 3;
     static curTries = 0;
     static defaultSleepTime = 500;
+
+    // Cache
+    static cache = {};
 
     // Helper function for common request
     static async apiGet(path, key) {
@@ -14,8 +18,19 @@ export class Request {
 
     // Main api calling function
     static async urlGet(url) {
+        // Check if data is in cache
+        if (this.cache[url] != undefined) {
+            return this.cache[url].data;
+        }
+
+        // Get data from API
         try {
             const response = await axios.get(url);
+
+            // Add data to cache if it doesn't exist
+            if (this.cache[url] == undefined) {
+                this.cache[url] = response;
+            }
             return response.data;
         } 
         catch (error) {
