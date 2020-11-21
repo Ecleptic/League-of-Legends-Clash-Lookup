@@ -28,7 +28,7 @@ const apiKey = process.env.API_KEY;
 
 //playerMatchInfo(apiKey);
 
-clash.printClashData("The Crafty Corki", apiKey);
+clash.getClashWinrates("The Crafty Corki", apiKey);
 // let name = await game.printClashData(133);
 // console.log(name);
 
