@@ -1,4 +1,4 @@
-import { urlGet, apiGet } from "./Request.js";
+import { Request } from "./Request.js";
 import * as account from "./AccountInfo.js";
 
 export function getWinLoss(matchData, teamIndex) {
@@ -7,7 +7,7 @@ export function getWinLoss(matchData, teamIndex) {
 }
 
 export async function getMatchInfo(matchId, key) {
-    let data = await apiGet('/lol/match/v4/matches/' + matchId, key);
+    let data = await Request.apiGet('/lol/match/v4/matches/' + matchId, key);
     if (data) {
         return data;
     }

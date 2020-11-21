@@ -1,7 +1,7 @@
-import { urlGet, apiGet } from "./Request.js";
+import { Request } from "./Request.js";
 
 export async function getLatestVersion() {
-    let versionList = await urlGet('https://ddragon.leagueoflegends.com/api/versions.json');
+    let versionList = await Request.urlGet('https://ddragon.leagueoflegends.com/api/versions.json');
     if (versionList && versionList.length > 0) {
         return versionList[0];
     }
@@ -13,7 +13,7 @@ export async function getLatestVersion() {
 
 export async function getChampionList() {
     let version = await getLatestVersion();
-    let data = await urlGet('https://ddragon.leagueoflegends.com/cdn/' + version + '/data/en_US/champion.json');
+    let data = await Request.urlGet('https://ddragon.leagueoflegends.com/cdn/' + version + '/data/en_US/champion.json');
     if (data) {
         return data.data;
     }
@@ -24,7 +24,7 @@ export async function getChampionList() {
 }
 
 export async function getQueueList() {
-    let data = await urlGet('https://static.developer.riotgames.com/docs/lol/queues.json');
+    let data = await Request.urlGet('https://static.developer.riotgames.com/docs/lol/queues.json');
     if (data) {
         return data;
     }

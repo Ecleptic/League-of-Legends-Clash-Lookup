@@ -1,4 +1,4 @@
-import { urlGet, apiGet } from "./Request.js";
+import { Request } from "./Request.js";
 
 export async function getMatchHistory(summonerName, key) {
     let accountId = await getAccountId(summonerName, key);
@@ -6,7 +6,7 @@ export async function getMatchHistory(summonerName, key) {
 }
 
 export async function getMatchHistoryById(accountId, key) {
-    let data = await apiGet('/lol/match/v4/matchlists/by-account/' + accountId, key);
+    let data = await Request.apiGet('/lol/match/v4/matchlists/by-account/' + accountId, key);
     if (data) {
         return data;
     }
@@ -46,7 +46,7 @@ export async function getAccountId(summonerName, key) {
 }
 
 export async function getAccountInfo(summonerName, key) {
-    let data = await apiGet('/lol/summoner/v4/summoners/by-name/' + summonerName, key);
+    let data = await Request.apiGet('/lol/summoner/v4/summoners/by-name/' + summonerName, key);
     if (data) {
         return data;
     }
