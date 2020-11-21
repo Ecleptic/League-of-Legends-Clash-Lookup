@@ -66,6 +66,7 @@ export async function getClashWinrates(summonerName, key) {
 
         // Skip if player is not found
         if (playerIndex < 0) {
+            console.log("player not found, skip iteration");
             continue;
         }
 

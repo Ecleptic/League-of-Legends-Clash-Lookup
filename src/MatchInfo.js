@@ -12,6 +12,7 @@ export async function getMatchInfo(matchId, key) {
         return data;
     }
     else {
+        console.log("Error (getMatchInfo): invalid match data received", data);
         return {};
     }
 }
@@ -52,8 +53,8 @@ export function getPlayerTeamIndex(matchData, playerIndex) {
     }
 }
 
-export async function getPlayerMatchInfo(matchData, summonerName) {
-    let playerIndex = await getPlayerMatchIndex(matchData, summonerName);
+export function getPlayerMatchInfo(matchData, summonerName) {
+    let playerIndex = getPlayerMatchIndex(matchData, summonerName);
     if (playerIndex >= 0) {
         return matchData.participants[playerIndex];
     }
@@ -64,5 +65,11 @@ export async function getPlayerMatchInfo(matchData, summonerName) {
 
 export async function getTeamMatchInfo(matchData, summonerName) {
     let teamIndex = await getPlayerTeamIndex(matchData, summonerName);
-    return matchData.participants[playerIndex];
+    if (teamIndex > 0) {
+        return matchData.participants[playerIndex];
+    }
+    else {
+        return {};
+    }
+    
 }
