@@ -28,7 +28,9 @@ const apiKey = process.env.API_KEY;
 
 //playerMatchInfo(apiKey);
 
-clash.getClashWinLoss("The Crafty Corki", apiKey);
+clash.printClashData("The Crafty Corki", apiKey);
+// let name = await game.printClashData(133);
+// console.log(name);
 
 async function matchHistory(key) {
     let matchHistory = await account.getMatchHistory("The Crafty Corki", key);

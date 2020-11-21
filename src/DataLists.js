@@ -15,7 +15,6 @@ export async function getChampionList() {
     let version = await getLatestVersion();
     let data = await urlGet('https://ddragon.leagueoflegends.com/cdn/' + version + '/data/en_US/champion.json');
     if (data) {
-        console.log(data.data);
         return data.data;
     }
     else {

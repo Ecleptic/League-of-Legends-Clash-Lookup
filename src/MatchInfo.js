@@ -50,3 +50,8 @@ export async function getPlayerMatchInfo(matchData, summonerName) {
     let playerIndex = await getPlayerMatchIndex(matchData, summonerName);
     return matchData.participants[playerIndex];
 }
+
+export async function getTeamMatchInfo(matchData, summonerName) {
+    let teamIndex = await getPlayerTeamIndex(matchData, summonerName);
+    return matchData.participants[playerIndex];
+}

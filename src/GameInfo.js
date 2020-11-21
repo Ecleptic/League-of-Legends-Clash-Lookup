@@ -11,3 +11,18 @@ export async function getQueue(id) {
         }
     }
 }
+
+export async function getChampionName(id) {
+    let champList = await lists.getChampionList();
+    for (let champKey in champList) {
+        let champData = champList[champKey];
+
+        if (champData.key == id) {
+            return champData.name;
+        }
+        // Zyra is the last champ
+        else if (champData.name == "Zyra") {
+            return "";
+        }
+    }
+}
