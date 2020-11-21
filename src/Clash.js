@@ -2,6 +2,7 @@ import { urlGet, apiGet } from "./Request.js";
 import * as account from "./AccountInfo.js";
 import * as match from "./MatchInfo.js";
 import * as game from "./GameInfo.js";
+import * as lists from "./DataLists.js";
 
 export async function getClashMatches(summonerName, key) {
     let accountId = await account.getAccountId(summonerName, key);
@@ -53,6 +54,9 @@ export async function getClashWinrates(summonerName, key) {
     // Print out string of dots for progress comparison
     console.log(".".repeat(matches.length));
 
+    // Get champ list up front
+    let champList = await lists.getChampionList();
+
     for (let i = 0; i < matches.length; i++) {
         let curMatch = matches[i];
 
@@ -69,7 +73,7 @@ export async function getClashWinrates(summonerName, key) {
         let champId = matchData.participants[playerIndex].championId;
 
         let winLoss = match.getWinLoss(matchData, teamIndex);
-        let champName = await game.getChampionName(champId);
+        let champName = game.getChampionNameFromList(champList, champId);
         process.stdout.write(".");
         //console.log(winLoss, champName);
 

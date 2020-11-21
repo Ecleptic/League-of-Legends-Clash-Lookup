@@ -28,6 +28,7 @@ export function getPlayerMatchIndex(matchData, summonerName) {
             return i;
         }
         else if (i == participantInfo.length - 1) {
+            console.log("Error (getPlayerMatchIndex): Player not found");
             return -1;
         }
     }

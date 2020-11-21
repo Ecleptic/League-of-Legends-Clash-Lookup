@@ -6,7 +6,7 @@ export async function getLatestVersion() {
         return versionList[0];
     }
     else {
-        console.log("Error, latest version not found");
+        console.log("Error, latest version not found", versionList);
         return "";
     }
 }
@@ -18,6 +18,7 @@ export async function getChampionList() {
         return data.data;
     }
     else {
+        console.log("Error (getChampionList): champ list data not found", data);
         return [];
     }
 }
@@ -28,6 +29,7 @@ export async function getQueueList() {
         return data;
     }
     else {
+        console.log("Error (getQueueList): queue list data not found", data);
         return [];
     }
 }
