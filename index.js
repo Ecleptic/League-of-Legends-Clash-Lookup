@@ -1,4 +1,3 @@
-import readline from "readline";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -9,25 +8,27 @@ import * as clash from "./src/Clash.js";
 import * as match from "./src/MatchInfo.js";
 
 // Setup console read
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
 // Get key from environment variable
 const apiKey = process.env.API_KEY;
 
-let queueList = await lists.getQueueList();
+//let queueList = await lists.getQueueList();
 //console.log(queueList);
 
-let queueInfo = await game.getQueue(700);
+//let queueInfo = await game.getQueue(700);
 //console.log(queueInfo);
 
 // rl.question("api key: ", (key) => {
 //     playerMatchInfo(key);
 // });
 
-playerMatchInfo(apiKey);
+//playerMatchInfo(apiKey);
+
+clash.getClashWinLoss("The Crafty Corki", apiKey);
 
 async function matchHistory(key) {
     let matchHistory = await account.getMatchHistory("The Crafty Corki", key);
@@ -44,7 +45,7 @@ async function matchInfo(key) {
     console.log(matchData);
 }
 
-async function playerMatchInfo(key) {
+async function playerMatchData(key) {
     let matchData = await match.getMatchInfo(3228438067, key);
     let playerData = await match.getPlayerMatchInfo(matchData, "The Crafty Corki");
     console.log(playerData);
