@@ -38,6 +38,13 @@ export class Request {
             if (this.curTries < this.maxTries) {
                 this.curTries++;
 
+                // Check timeout error
+                if (error.errno == -4039) {
+                    console.log("Error (Request): connection timeout");
+                    console.log("On url:", url);
+                    return {};
+                }
+
                 // Check if the api has given us a retry time limit
                 let sleepTime = this.defaultSleepTime;
                 let riotSleepTime = error.response.headers['retry-after'];
@@ -51,6 +58,7 @@ export class Request {
             }
             else {
                 console.log("Error (urlGet):", error.response.statusText);
+                console.log("On url:", url);
                 this.curTries = 0;
                 return {};
             }

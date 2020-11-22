@@ -28,7 +28,13 @@ const apiKey = process.env.API_KEY;
 
 //playerMatchInfo(apiKey);
 
-clash.getClashWinrates("The Crafty Corki", apiKey);
+await clash.getClashWinrates("The Crafty Corki", apiKey);
+await clash.getClashWinrates("Sanapri", apiKey);
+await clash.getClashWinrates("Gekijou", apiKey);
+await clash.getClashWinrates("Dubious Donger", apiKey);
+await clash.getClashWinrates("Gimpy Gopher", apiKey);
+await clash.getClashWinrates("Mad Mitochondria", apiKey);
+await clash.getClashWinrates("Tartarus Nyx", apiKey);
 // let name = await game.printClashData(133);
 // console.log(name);
 

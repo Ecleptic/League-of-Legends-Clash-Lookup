@@ -1,6 +1,6 @@
 import { Request } from "./Request.js";
 import * as account from "./AccountInfo.js";
-import * as match from "./MatchInfo.js";
+import { Match, getMatchData } from "./MatchInfo.js";
 import * as game from "./GameInfo.js";
 import * as lists from "./DataLists.js";
 
@@ -54,29 +54,14 @@ export async function getClashWinrates(summonerName, key) {
     // Print out string of dots for progress comparison
     console.log(".".repeat(matches.length));
 
-    // Get champ list up front
-    let champList = await lists.getChampionList();
-
     for (let i = 0; i < matches.length; i++) {
-        let curMatch = matches[i];
+        let matchData = await getMatchData(matches[i].gameId, key);
 
-        let matchId = curMatch.gameId;
-        let matchData = await match.getMatchInfo(matchId, key);
-        let playerIndex = match.getPlayerMatchIndex(matchData, summonerName);
+        let match = new Match(matchData);
 
-        // Skip if player is not found
-        if (playerIndex < 0) {
-            console.log("player not found, skip iteration");
-            continue;
-        }
-
-        let teamIndex = match.getPlayerTeamIndex(matchData, playerIndex);
-        let champId = matchData.participants[playerIndex].championId;
-
-        let winLoss = match.getWinLoss(matchData, teamIndex);
-        let champName = game.getChampionNameFromList(champList, champId);
+        let champName = await match.getChampionName(summonerName);
+        let result = match.getResult(summonerName);
         process.stdout.write(".");
-        //console.log(winLoss, champName);
 
         // Initialize champ data if it doesn't already exist
         if (winrateObj[champName] == undefined) {
@@ -86,7 +71,7 @@ export async function getClashWinrates(summonerName, key) {
         }
 
         // Add win/loss data
-        if (winLoss == "Win") {
+        if (result == "Win") {
             winrateObj[champName].wins++;
             totalWins++;
         }
