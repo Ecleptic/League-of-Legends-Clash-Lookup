@@ -48,6 +48,42 @@ export class Match {
         return this.matchData.teams[teamIndex].win;
     }
 
+    async getAllyBans(summonerName) {
+        if (this.invalid) {return [];}
+
+        let playerIndex = this.getPlayerIndex(summonerName);
+        let teamIndex = this.getTeamIndex(playerIndex);
+        let allyBans = this.matchData.teams[teamIndex].bans;
+
+        // Get champ namesfrom ids
+        let output = [];
+        let champList = await lists.getChampionList();
+        allyBans.forEach(banData => {
+            let champId = banData.championId;
+            output.push(game.getChampionNameFromList(champList, champId));
+        });
+        return output;
+    }
+
+    async getEnemyBans(summonerName) {
+        if (this.invalid) {return [];}
+
+        let playerIndex = this.getPlayerIndex(summonerName);
+        let teamIndex = this.getTeamIndex(playerIndex);
+        // Flip index to get enemy team
+        teamIndex = 1 - teamIndex;
+        let enemyBans = this.matchData.teams[teamIndex].bans;
+
+        // Get champ namesfrom ids
+        let output = [];
+        let champList = await lists.getChampionList();
+        enemyBans.forEach(banData => {
+            let champId = banData.championId;
+            output.push(game.getChampionNameFromList(champList, champId));
+        });
+        return output;
+    }
+
     // Helper functions
     getPlayerIndex(summonerName) {
         if (this.invalid) {return -1;}

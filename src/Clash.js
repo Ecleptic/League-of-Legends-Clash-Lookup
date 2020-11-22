@@ -50,6 +50,8 @@ export async function getClashWinrates(summonerName, key) {
     let winrateObj = {};
     let totalWins = 0;
     let totalLosses = 0;
+    let theirBans = {};
+    let ourBans = {};
 
     // Print out string of dots for progress comparison
     console.log(".".repeat(matches.length));
@@ -60,30 +62,119 @@ export async function getClashWinrates(summonerName, key) {
         let match = new Match(matchData);
 
         let champName = await match.getChampionName(summonerName);
+        let allyBanList = await match.getAllyBans(summonerName);
+        let enemyBanList = await match.getEnemyBans(summonerName);
         let result = match.getResult(summonerName);
         process.stdout.write(".");
 
-        // Initialize champ data if it doesn't already exist
+        // Initialize data if it doesn't already exist
+        // Champs
         if (winrateObj[champName] == undefined) {
             winrateObj[champName] = {};
             winrateObj[champName].wins = 0;
             winrateObj[champName].losses = 0;
         }
 
+        // Their bans
+        for (let i = 0; i < enemyBanList.length; i++) {
+            let enemyBanChamp = enemyBanList[i];
+
+            if (theirBans[enemyBanChamp] == undefined) {
+                theirBans[enemyBanChamp] = {};
+                theirBans[enemyBanChamp].wins = 0;
+                theirBans[enemyBanChamp].losses = 0;
+            }
+        }
+        // Our bans
+        for (let i = 0; i < allyBanList.length; i++) {
+            let allyBanChamp = allyBanList[i];
+
+            if (ourBans[allyBanChamp] == undefined) {
+                ourBans[allyBanChamp] = {};
+                ourBans[allyBanChamp].wins = 0;
+                ourBans[allyBanChamp].losses = 0;
+            }
+        }
+
         // Add win/loss data
         if (result == "Win") {
             winrateObj[champName].wins++;
             totalWins++;
+
+            // Ally bans
+            for (let i = 0; i < allyBanList.length; i++) {
+                let allyBanChamp = allyBanList[i];
+                ourBans[allyBanChamp].wins++;
+            }
+
+            // Enemy bans
+            for (let i = 0; i < enemyBanList.length; i++) {
+                let enemyBanChamp = enemyBanList[i];
+                theirBans[enemyBanChamp].wins++;
+            }
         }
+        // Losses
         else {
             winrateObj[champName].losses++;
             totalLosses++;
+
+            // Ally Bans
+            for (let i = 0; i < allyBanList.length; i++) {
+                let allyBanChamp = allyBanList[i];
+                ourBans[allyBanChamp].losses++;
+            }
+
+            // Enemy bans
+            for (let i = 0; i < enemyBanList.length; i++) {
+                let enemyBanChamp = enemyBanList[i];
+                theirBans[enemyBanChamp].losses++;
+            }
         }
 
         // End of loop, print winrate object
         if (i == matches.length - 1) {
-            console.log(winrateObj);
+            // Put data in arrays and sort data from most - least
+            // Champion picks
+            let winrateArr = [];
+            for (let curChampName in winrateObj) {
+                winrateObj[curChampName].name = curChampName;
+                winrateArr.push(winrateObj[curChampName]);
+            }
+            winrateArr.sort((a, b) => {
+                return (b.wins+b.losses) - (a.wins+a.losses);
+            });
+
+            // Ally bans
+            let allyBanArr = [];
+            for (let curChampName in ourBans) {
+                ourBans[curChampName].name = curChampName;
+                allyBanArr.push(ourBans[curChampName]);
+            }
+            allyBanArr.sort((a, b) => {
+                return (b.wins+b.losses) - (a.wins+a.losses);
+            });
+
+            // Enemy bans
+            let enemyBanArr = [];
+            for (let curChampName in theirBans) {
+                theirBans[curChampName].name = curChampName;
+                enemyBanArr.push(theirBans[curChampName]);
+            }
+            enemyBanArr.sort((a, b) => {
+                return (b.wins+b.losses) - (a.wins+a.losses);
+            });
+
+            console.log("\n", summonerName);
             console.log(totalWins, totalLosses);
+
+            console.log("\nChampion picks");
+            console.log(winrateArr);
+
+            console.log("\nAlly team bans");
+            console.log(allyBanArr);
+
+            console.log("\nEnemy team bans")
+            console.log(enemyBanArr);
         }
     }
 }
