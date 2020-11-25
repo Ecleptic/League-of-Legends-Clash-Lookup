@@ -51,6 +51,7 @@ export async function getAccountInfo(summonerName, key) {
         return data;
     }
     else {
+        console.log("Error, could not find the requested account:", summonerName);
         return false;
     }
 }
