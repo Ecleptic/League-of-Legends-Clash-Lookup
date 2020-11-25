@@ -41,11 +41,12 @@ export class Request {
             let [retry, waitTime] = this.checkError(error, url);
             if (retry) {
                 // Sleep before retry
+                console.log("sleeping for", waitTime, "milliseconds");
                 await sleep(waitTime);
                 return await Request.urlGet(url);
             }
             else {
-                return {};
+                return false;
             }
         }
     }
@@ -79,7 +80,6 @@ export class Request {
                 let riotSleepTime = error.response.headers['retry-after'];
                 if (riotSleepTime) {
                     waitTime = parseInt(riotSleepTime * 1000);
-                    console.log("sleeping for", sleepTime, "milliseconds");
                 }
                 break;
         }

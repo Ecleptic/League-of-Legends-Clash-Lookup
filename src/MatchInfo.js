@@ -1,30 +1,18 @@
 import { Request } from "./Request.js";
-import * as account from "./AccountInfo.js";
 import * as game from "./GameInfo.js";
 import * as lists from "./DataLists.js";
 
-// Constructors cannot be async so separate into a global function
-export async function getMatchData(matchId, key) {
-    let data = await Request.apiGet('/lol/match/v4/matches/' + matchId, key);
-    if (data) {
-        return data;
-    }
-    else {
-        console.log("Error (getMatchData): invalid match data received", data);
-        return {};
-    }
-}
-
 export class Match {
     matchData = undefined;
-    invalid = false;
+    invalid = true;
 
-    constructor(matchData) {
-        if (matchData) {
-            this.matchData = matchData;
-        }
-        else {
-            invalid = true;
+    // Setup data for current match
+    async init(matchId, key) {
+        this.matchData = await Request.apiGet('/lol/match/v4/matches/' + matchId, key);
+        if (this.matchData) {
+            this.invalid = false;
+
+            // Init commonly used variables
         }
     }
 
@@ -55,7 +43,7 @@ export class Match {
         let teamIndex = this.getTeamIndex(playerIndex);
         let allyBans = this.matchData.teams[teamIndex].bans;
 
-        // Get champ namesfrom ids
+        // Get champ names from ids
         let output = [];
         let champList = await lists.getChampionList();
         allyBans.forEach(banData => {

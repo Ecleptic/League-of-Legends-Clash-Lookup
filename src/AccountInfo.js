@@ -11,7 +11,7 @@ export async function getMatchHistoryById(accountId, key) {
         return data;
     }
     else {
-        return [];
+        return false;
     }
 }
 
@@ -51,7 +51,7 @@ export async function getAccountInfo(summonerName, key) {
         return data;
     }
     else {
-        console.log("Error, could not find the requested account:", summonerName);
+        console.log("Error (getAccountInfo): could not find the requested account:", summonerName);
         return false;
     }
 }

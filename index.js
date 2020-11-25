@@ -4,7 +4,8 @@ dotenv.config();
 import * as lists from "./src/DataLists.js";
 import * as game from "./src/GameInfo.js";
 import * as account from "./src/AccountInfo.js";
-import * as clash from "./src/Clash.js";
+//import * as clash from "./src/Clash.js";
+import { Clash } from "./src/Clash.js";
 import * as match from "./src/MatchInfo.js";
 
 // Setup console read
@@ -32,13 +33,15 @@ if (apiKey == undefined) {
 
 //playerMatchInfo(apiKey);
 
-await clash.getClashWinrates("The Crafty Corki", apiKey);
-await clash.getClashWinrates("Sanapri", apiKey);
-await clash.getClashWinrates("Gekijou", apiKey);
-await clash.getClashWinrates("Dubious Donger", apiKey);
-await clash.getClashWinrates("Gimpy Gopher", apiKey);
-await clash.getClashWinrates("Mad Mitochondria", apiKey);
-await clash.getClashWinrates("Tartarus Nyx", apiKey);
+let clash = new Clash;
+clash.run("The Crafty Corki", apiKey);
+// await clash.getClashWinrates("The Crafty Corki", apiKey);
+// await clash.getClashWinrates("Sanapri", apiKey);
+// await clash.getClashWinrates("Gekijou", apiKey);
+// await clash.getClashWinrates("Dubious Donger", apiKey);
+// await clash.getClashWinrates("Gimpy Gopher", apiKey);
+// await clash.getClashWinrates("Mad Mitochondria", apiKey);
+// await clash.getClashWinrates("Tartarus Nyx", apiKey);
 // let name = await game.printClashData(133);
 // console.log(name);
 
