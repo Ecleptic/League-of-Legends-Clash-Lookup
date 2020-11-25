@@ -76,36 +76,10 @@ export class Clash {
     
             // End of loop, print winrate object
             if (i == matches.length - 1) {
-                // Put data in arrays and sort data from most - least
-                // Champion picks
-                let winrateArr = [];
-                for (let curChampName in this.champWinrates) {
-                    this.champWinrates[curChampName].name = curChampName;
-                    winrateArr.push(this.champWinrates[curChampName]);
-                }
-                winrateArr.sort((a, b) => {
-                    return (b.wins+b.losses) - (a.wins+a.losses);
-                });
-    
-                // Ally bans
-                let allyBanArr = [];
-                for (let curChampName in this.allyBans) {
-                    this.allyBans[curChampName].name = curChampName;
-                    allyBanArr.push(this.allyBans[curChampName]);
-                }
-                allyBanArr.sort((a, b) => {
-                    return (b.wins+b.losses) - (a.wins+a.losses);
-                });
-    
-                // Enemy bans
-                let enemyBanArr = [];
-                for (let curChampName in this.enemyBans) {
-                    this.enemyBans[curChampName].name = curChampName;
-                    enemyBanArr.push(this.enemyBans[curChampName]);
-                }
-                enemyBanArr.sort((a, b) => {
-                    return (b.wins+b.losses) - (a.wins+a.losses);
-                });
+                // Sort data from most - least
+                let winrateArr = this.sortWinrates(this.champWinrates);
+                let allyBanArr = this.sortWinrates(this.allyBans);
+                let enemyBanArr = this.sortWinrates(this.enemyBans);
     
                 console.log("\n", summonerName);
                 console.log(this.totals);
@@ -154,6 +128,22 @@ export class Clash {
             let enemyBanChamp = enemyBanList[i];
             this.enemyBans[enemyBanChamp][resultKey]++;
         }
+    }
+
+    // Sort by most number of games
+    sortWinrates(winrateObj) {
+        // Put object into an array
+        let winrateArr = [];
+        for (let curChampName in winrateObj) {
+            winrateObj[curChampName].name = curChampName;
+            winrateArr.push(winrateObj[curChampName]);
+        }
+
+        // Sort array
+        winrateArr.sort((a, b) => {
+            return (b.wins+b.losses) - (a.wins+a.losses);
+        });
+        return winrateArr;
     }
 
 }
