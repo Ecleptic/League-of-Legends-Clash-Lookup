@@ -27,6 +27,31 @@ export class Match {
         return game.getChampionNameFromList(champList, champId);
     }
 
+    getRole(summonerName) {
+        if (this.invalid) {return "";}
+
+        let playerIndex = this.getPlayerIndex(summonerName);
+        let role = this.matchData.participants[playerIndex].timeline.role;
+        let lane = this.matchData.participants[playerIndex].timeline.lane;
+        if (lane != "BOTTOM") {
+            if (role.includes("DUO")) {
+                return "unsure";
+            }
+            else {
+                return lane.toLowerCase();
+            }
+        }
+        // Bot lane is a special case as a duo lane
+        else {
+            if (role == "DUO_SUPPORT") {
+                return "support";
+            }
+            else {
+                return "bottom";
+            }
+        }
+    }
+
     // Team data
     getResult(summonerName) {
         if (this.invalid) {return "";}

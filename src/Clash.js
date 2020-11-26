@@ -9,6 +9,36 @@ export class Clash {
 
     matches;
     champWinrates = {};
+    roleWinrates = {
+        top: {
+            wins: 0,
+            losses: 0,
+        },
+        jungle: {
+            wins: 0,
+            losses: 0,
+        },
+        middle: {
+            wins: 0,
+            losses: 0,
+        },
+        bottom: {
+            wins: 0,
+            losses: 0,
+        },
+        support: {
+            wins: 0,
+            losses: 0,
+        },
+        unsure: {
+            wins: 0,
+            losses: 0,
+        },
+        none: {
+            wins: 0,
+            losses: 0,
+        },
+    };
     totals = {
         wins: 0,
         losses: 0,
@@ -45,16 +75,19 @@ export class Clash {
         console.log(".".repeat(matches.length));
     
         for (let i = 0; i < matches.length; i++) {
-            //let matchData = await getMatchData(matches[i].gameId, key);
-    
-            //let match = new Match(matchData);
+            // Initialize match data
             let match = new Match;
             await match.init(matches[i].gameId, key);
     
             let champName = await match.getChampionName(summonerName);
             let allyBanList = await match.getAllyBans(summonerName);
             let enemyBanList = await match.getEnemyBans(summonerName);
+            let role = match.getRole(summonerName);
             let result = match.getResult(summonerName);
+
+            if (role == "top" && champName == "Galio") {
+                console.log(matches[i].gameId);
+            }
             process.stdout.write(".");
     
             // Initialize data if it doesn't already exist
@@ -72,7 +105,7 @@ export class Clash {
             }
     
             // Add win/loss data
-            this.addResult(result, champName, allyBanList, enemyBanList);
+            this.addResult(result, champName, role, allyBanList, enemyBanList);
     
             // End of loop, print winrate object
             if (i == matches.length - 1) {
@@ -86,12 +119,16 @@ export class Clash {
     
                 console.log("\nChampion picks");
                 console.log(winrateArr);
+
+                console.log("\nRoles");
+                console.log(this.roleWinrates);
     
                 console.log("\nAlly team bans");
                 console.log(allyBanArr);
     
                 console.log("\nEnemy team bans")
                 console.log(enemyBanArr);
+                
             }
         }
     }
@@ -104,7 +141,7 @@ export class Clash {
         }
     }
 
-    addResult(result, champName, allyBanList, enemyBanList) {
+    addResult(result, champName, role, allyBanList, enemyBanList) {
         let resultKey = "";
         if (result == "Win") {
             resultKey = "wins";
@@ -116,6 +153,7 @@ export class Clash {
         // Total results
         this.champWinrates[champName][resultKey]++;
         this.totals[resultKey]++;
+        this.roleWinrates[role][resultKey]++;
 
         // Ally bans
         for (let i = 0; i < allyBanList.length; i++) {
