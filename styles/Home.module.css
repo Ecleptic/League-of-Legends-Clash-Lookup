@@ -1,4 +1,5 @@
 .container {
+  background: #f1f2f5;
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
@@ -73,10 +74,10 @@
 
 .grid {
   display: flex;
-  align-items: center;
+  align-items: normal;
   justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  flex-wrap: nowrap;
+  max-width: 2500px;
   margin-top: 3rem;
 }
 

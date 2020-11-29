@@ -2,15 +2,32 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { Clash } from '../lib/Clash.js'
 
-export default function Home() {
+export async function getStaticProps() {
     const apiKey = process.env.API_KEY;
     if (apiKey == undefined) {
         console.log("Please create a .env file and add API_KEY to it");
+
+        return;
     }
     else {
         const clash = new Clash;
-        clash.run("The Crafty Corki", apiKey);
+        const username = "The Crafty Corki";
+        const [totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr] = await clash.run(username, apiKey);
+        return {
+            props: {
+                username,
+                totals,
+                winrateArr,
+                roleWinrates,
+                allyBanArr,
+                enemyBanArr,
+            },
+            revalidate: 5,
+        }
     }
+}
+
+export default function Home({ username, totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr, }) {
 
     return (
         <div className={styles.container}>
@@ -21,8 +38,39 @@ export default function Home() {
 
             <main className={styles.main}>
             <h1 className={styles.title}>
-                Welcome to <a href="https://nextjs.org">Next.js!</a>
+                Clash winrates for <a href="">{username}</a>
             </h1>
+
+            <h3>{totals.wins}, {totals.losses}</h3>
+            <div className={styles.grid}>
+                <ul className={styles.card}>
+                    <h3>Champion, Wins, Losses</h3>
+                    {winrateArr.map((matches) => (
+                        <li>{matches.name}: {matches.wins}, {matches.losses}</li>
+                    ))}
+                </ul>
+                
+                <ul className={styles.card}>
+                    <h3>Role, Wins, Losses</h3>
+                    {Object.keys(roleWinrates).map(key => (
+                        <li>{key}: {roleWinrates[key].wins}, {roleWinrates[key].losses}</li>
+                    ))}
+                </ul>
+
+                <ul className={styles.card}>
+                    <h3>Ally bans, Wins, Losses</h3>
+                    {allyBanArr.map((matches) => (
+                        <li>{matches.name}: {matches.wins}, {matches.losses}</li>
+                    ))}
+                </ul>
+
+                <ul className={styles.card}>
+                    <h3>Enemy bans, Wins, Losses</h3>
+                    {enemyBanArr.map((matches) => (
+                        <li>{matches.name}: {matches.wins}, {matches.losses}</li>
+                    ))}
+                </ul>
+            </div>
 
             <p className={styles.description}>
                 Get started by editing{' '}
