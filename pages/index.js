@@ -4,7 +4,8 @@ import { Clash } from '../lib/Clash.js'
 
 export default function Home() {
     const apiKey = getApiKey();
-
+    const clash = new Clash;
+    clash.run("The Crafty Corki", apiKey);
 
     return (
         <div className={styles.container}>
