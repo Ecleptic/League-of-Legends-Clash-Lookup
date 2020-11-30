@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { Clash } from '../lib/Clash.js'
 
-export async function getStaticProps() {
+export async function getServerSideProps () {
     const apiKey = process.env.API_KEY;
     if (apiKey == undefined) {
         console.log("Please create a .env file and add API_KEY to it");
@@ -22,12 +23,26 @@ export async function getStaticProps() {
                 allyBanArr,
                 enemyBanArr,
             },
-            revalidate: 5,
         }
     }
 }
 
-export default function Home({ username, totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr, }) {
+function MyComponent({ summonerName, onSearch }) {
+    const [newName, setNewName] = useState(summonerName)
+  
+    return (
+        <div className={styles.card}>
+        <input 
+          type="text" 
+          placeholder="Summoner Name" 
+          onChange={(e) => setNewName(e.target.value)} 
+        />
+        <button onClick={() => console.log(newName)}>Search</button>
+        </div>
+    )
+  }
+
+export default function Home({ username, totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr }) {
 
     return (
         <div className={styles.container}>
@@ -37,6 +52,8 @@ export default function Home({ username, totals, winrateArr, roleWinrates, allyB
             </Head>
 
             <main className={styles.main}>
+            <MyComponent></MyComponent>
+
             <h1 className={styles.title}>
                 Clash winrates for <a href="">{username}</a>
             </h1>
@@ -72,6 +89,7 @@ export default function Home({ username, totals, winrateArr, roleWinrates, allyB
                 </ul>
             </div>
 
+            {/*
             <p className={styles.description}>
                 Get started by editing{' '}
                 <code className={styles.code}>pages/index.js</code>
@@ -106,6 +124,7 @@ export default function Home({ username, totals, winrateArr, roleWinrates, allyB
                 </p>
                 </a>
             </div>
+            */}
             </main>
 
             {/*
