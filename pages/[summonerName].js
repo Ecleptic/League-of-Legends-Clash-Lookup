@@ -45,8 +45,8 @@ export default function SummonerName({ summonerName, totals, champArr, roleArr, 
                     <div className={styles.grid}>
                         <WinrateTable type="Champion" dataArr={champArr}/>
                         <WinrateTable type="Role" dataArr={roleArr}/>
-                        <WinrateTable type="Ally bans" dataArr={allyBanArr}/>
                         <WinrateTable type="Enemy bans" dataArr={enemyBanArr}/>
+                        <WinrateTable type="Ally bans" dataArr={allyBanArr}/>
                     </div>
                 </main>
             </div>
