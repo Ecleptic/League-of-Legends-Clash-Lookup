@@ -7,7 +7,7 @@ export function WinrateTable({type, dataArr}) {
         key: 'games',
         desc: true,
     };
-    const {sortedData, requestSort} = useSortableData(dataArr, descSortConfig);
+    const {sortedData, requestSort, getClassNamesFor} = useSortableData(dataArr, descSortConfig);
 
     return (
         <div className={styles.card}>
@@ -15,17 +15,17 @@ export function WinrateTable({type, dataArr}) {
                 <thead>
                     <tr>
                         <th>
-                            <button type="button" onClick={() => requestSort('name')}>
+                            <button type="button" onClick={() => requestSort('name')} className={getClassNamesFor('name')}>
                                 {type}
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => requestSort('games')}>
+                            <button type="button" onClick={() => requestSort('games')} className={getClassNamesFor('games')}>
                                 Games
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => requestSort('winrate')}>
+                            <button type="button" onClick={() => requestSort('winrate')} className={getClassNamesFor('winrate')}>
                                 Winrate
                             </button>
                         </th>
@@ -75,6 +75,14 @@ function useSortableData(dataArr, config) {
         setSortConfig({key, desc});
     }
 
-    return { sortedData: sortedItems, requestSort };
+    const getClassNamesFor = (name) => {
+        if (sortConfig.key === name) {
+            return sortConfig.desc ? 'descending' : 'ascending';
+        }
+        
+        return 'none';
+      };
+
+    return { sortedData: sortedItems, requestSort , getClassNamesFor};
 }
 
