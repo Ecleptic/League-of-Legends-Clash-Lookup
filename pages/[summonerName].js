@@ -2,12 +2,29 @@ import { useRouter } from 'next/router';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { SearchBar } from '../components/searchBar.js'
+import { WinrateTable } from '../components/winrateTable.js'
 import { Clash } from '../lib/Clash.js'
 
-export default function SummonerName({ summonerName, totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr }) {
+export default function SummonerName({ summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }) {
 
     if (totals == undefined) {
-        return (<p>Is Undefined</p>)
+        return (
+            <div className={styles.container}>
+                <Head>
+                <title>Clash winrates</title>
+                <link rel="icon" href="/favicon.ico" />
+                </Head>
+            
+                <main className={styles.main}>
+                    <h1 className={styles.title}>
+                        Clash winrates for <span style={{color: "#0070f3"}}>no one</span>
+                    </h1>
+                    <p>Because no API key is present</p>
+    
+                    <SearchBar/>
+                </main>
+            </div>
+        )
     }
     else {
         return (
@@ -19,48 +36,18 @@ export default function SummonerName({ summonerName, totals, winrateArr, roleWin
             
                 <main className={styles.main}>
                     <h1 className={styles.title}>
-                        Clash winrates for {summonerName}
+                        Clash winrates for <span style={{color: "#0070f3"}}>{summonerName}</span>
                     </h1>
     
-                    <SearchBar></SearchBar>
+                    <SearchBar/>
                 
-                    <h3>{totals.wins}, {totals.losses}</h3>
+                    <h3>{totals.games} games, {totals.winrate}% winrate</h3>
+
                     <div className={styles.grid}>
-                        <div className={styles.card}>
-                            <h3>Champion, Wins, Losses</h3>
-                            <ul>
-                                {winrateArr.map((matches) => (
-                                    <li>{matches.name}: {matches.wins}, {matches.losses}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        
-                        <div className={styles.card}>
-                            <h3>Role, Wins, Losses</h3>
-                            <ul>
-                                {Object.keys(roleWinrates).map(key => (
-                                    <li>{key}: {roleWinrates[key].wins}, {roleWinrates[key].losses}</li>
-                                ))}
-                            </ul>
-                        </div>
-    
-                        <div className={styles.card}>
-                            <h3>Ally bans, Wins, Losses</h3>
-                            <ul>
-                                {allyBanArr.map((matches) => (
-                                    <li>{matches.name}: {matches.wins}, {matches.losses}</li>
-                                ))}
-                            </ul>
-                        </div>
-    
-                        <div className={styles.card}>
-                            <h3>Enemy bans, Wins, Losses</h3>
-                            <ul>
-                                {enemyBanArr.map((matches) => (
-                                    <li>{matches.name}: {matches.wins}, {matches.losses}</li>
-                                ))}
-                            </ul>
-                        </div>
+                        <WinrateTable type="Champion" dataArr={champArr}/>
+                        <WinrateTable type="Role" dataArr={roleArr}/>
+                        <WinrateTable type="Ally bans" dataArr={allyBanArr}/>
+                        <WinrateTable type="Enemy bans" dataArr={enemyBanArr}/>
                     </div>
                 </main>
             </div>
@@ -71,16 +58,22 @@ export default function SummonerName({ summonerName, totals, winrateArr, roleWin
 export async function getServerSideProps(context) {
     const { summonerName } = context.query;
     console.log(summonerName);
-    const [totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr] = await getClashData(summonerName);
-
-    return { props: { summonerName, totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr }}
+    const data = await getClashData(summonerName);
+    if (data) {
+        const [totals, champArr, roleArr, allyBanArr, enemyBanArr] = data;
+        return { props: { summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }}
+    }
+    else {
+        return { props: {} };
+    }
+    
 }
 
 async function getClashData (username) {
     const apiKey = process.env.API_KEY;
     if (apiKey == undefined) {
         console.log("Please create a .env file and add API_KEY to it");
-        return;
+        return false;
     }
     else {
         const clash = new Clash;
