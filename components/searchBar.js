@@ -7,12 +7,18 @@ export function SearchBar() {
   
     return (
         <div className={styles.card}>
-        <input 
-            type="text" 
-            placeholder="Summoner Name" 
-            onChange={(e) => test = e.target.value} 
-        />
-        <button onClick={() => router.push(test)}>Search</button>
+            <form onSubmit = {(e) => {
+                e.preventDefault();
+                router.push(test)}}>
+                <input 
+                    type="text" 
+                    placeholder="Summoner Name" 
+                    onChange={(e) => test = e.target.value} 
+                />
+                <button type="submit">Search</button>
+            </form>
+        
+        
         </div>
     )
 }

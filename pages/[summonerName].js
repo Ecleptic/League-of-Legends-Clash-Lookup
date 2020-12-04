@@ -26,33 +26,41 @@ export default function SummonerName({ summonerName, totals, winrateArr, roleWin
                 
                     <h3>{totals.wins}, {totals.losses}</h3>
                     <div className={styles.grid}>
-                        <ul className={styles.card}>
+                        <div className={styles.card}>
                             <h3>Champion, Wins, Losses</h3>
-                            {winrateArr.map((matches) => (
-                                <li>{matches.name}: {matches.wins}, {matches.losses}</li>
-                            ))}
-                        </ul>
+                            <ul>
+                                {winrateArr.map((matches) => (
+                                    <li>{matches.name}: {matches.wins}, {matches.losses}</li>
+                                ))}
+                            </ul>
+                        </div>
                         
-                        <ul className={styles.card}>
+                        <div className={styles.card}>
                             <h3>Role, Wins, Losses</h3>
-                            {Object.keys(roleWinrates).map(key => (
-                                <li>{key}: {roleWinrates[key].wins}, {roleWinrates[key].losses}</li>
-                            ))}
-                        </ul>
+                            <ul>
+                                {Object.keys(roleWinrates).map(key => (
+                                    <li>{key}: {roleWinrates[key].wins}, {roleWinrates[key].losses}</li>
+                                ))}
+                            </ul>
+                        </div>
     
-                        <ul className={styles.card}>
+                        <div className={styles.card}>
                             <h3>Ally bans, Wins, Losses</h3>
-                            {allyBanArr.map((matches) => (
-                                <li>{matches.name}: {matches.wins}, {matches.losses}</li>
-                            ))}
-                        </ul>
+                            <ul>
+                                {allyBanArr.map((matches) => (
+                                    <li>{matches.name}: {matches.wins}, {matches.losses}</li>
+                                ))}
+                            </ul>
+                        </div>
     
-                        <ul className={styles.card}>
+                        <div className={styles.card}>
                             <h3>Enemy bans, Wins, Losses</h3>
-                            {enemyBanArr.map((matches) => (
-                                <li>{matches.name}: {matches.wins}, {matches.losses}</li>
-                            ))}
-                        </ul>
+                            <ul>
+                                {enemyBanArr.map((matches) => (
+                                    <li>{matches.name}: {matches.wins}, {matches.losses}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </main>
             </div>
