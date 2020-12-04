@@ -1,4 +1,4 @@
-# Riot-Api-Test
+# League-of-Legends-Clash-Stats
 
 ### Site
 https://clash-lookup.vercel.app/
