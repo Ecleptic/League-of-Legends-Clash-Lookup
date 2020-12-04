@@ -1,5 +1,8 @@
 # Riot-Api-Test
 
+### Site
+https://clash-lookup.vercel.app/
+
 ### Setup
 1. Clone repo
 1. Run `npm install`
@@ -12,8 +15,3 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 ### Editing
 1. This project uses Next.js, modify `pages/index.js` to modify visuals
 1. Modify `lib/` to modify data
-
-### Deploy on Vercel
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
