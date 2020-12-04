@@ -4,12 +4,24 @@ export function WinrateTable({type, dataArr}) {
   
     return (
         <div className={styles.card}>
-            <h3>{type}, Games, Winrate</h3>
-            <ul>
-                {dataArr.map((matches) => (
-                    <li style={{color: "black"}}>{matches.name}: {matches.games}, {matches.winrate}%</li>
-                ))}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>{type}</th>
+                        <th>Games</th>
+                        <th>Winrate</th>
+                    </tr>
+                </thead>
+                <tbody style={{color: "black"}}>
+                    {dataArr.map((matches) => (
+                        <tr>
+                            <td>{matches.name}</td>
+                            <td>{matches.games}</td>
+                            <td>{matches.winrate}%</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
