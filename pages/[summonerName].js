@@ -4,9 +4,8 @@ import { SearchBar } from '../components/searchBar.js'
 import { WinrateTable } from '../components/winrateTable.js'
 import { Clash } from '../lib/Clash.js'
 
-export default function SummonerName({ summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }) {
-
-    if (totals == undefined) {
+export default function SummonerName({ error, errorMessage, summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }) {
+    if (error) {
         return (
             <div className={styles.container}>
                 <Head>
@@ -18,7 +17,7 @@ export default function SummonerName({ summonerName, totals, champArr, roleArr, 
                     <h1 className={styles.title}>
                         Clash winrates for <span style={{color: "#0070f3"}}>no one</span>
                     </h1>
-                    <p>Because no API key is present</p>
+                    <p>{errorMessage}</p>
     
                     <SearchBar/>
                 </main>
@@ -57,22 +56,23 @@ export default function SummonerName({ summonerName, totals, champArr, roleArr, 
 export async function getServerSideProps(context) {
     const { summonerName } = context.query;
     console.log(summonerName);
+
     const data = await getClashData(summonerName);
-    if (data) {
-        const [totals, champArr, roleArr, allyBanArr, enemyBanArr] = data;
-        return { props: { summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }}
+
+    if (data.error) {
+        return { props: data};
     }
     else {
-        return { props: {} };
-    }
-    
+        const {totals, champArr, roleArr, allyBanArr, enemyBanArr} = data;
+        return { props: { summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }}
+    }   
 }
 
 async function getClashData (username) {
     const apiKey = process.env.API_KEY;
     if (apiKey == undefined) {
         console.log("Please create a .env file and add API_KEY to it");
-        return false;
+        return { errorText: "API key has not been added" };
     }
     else {
         const clash = new Clash;
