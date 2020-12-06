@@ -14,6 +14,7 @@ export function WinrateTable({type, dataArr}) {
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>
                             <button type="button" onClick={() => requestSort('name')} className={getClassNamesFor('name')}>
                                 {type}
@@ -34,6 +35,9 @@ export function WinrateTable({type, dataArr}) {
                 <tbody style={{color: "black"}}>
                     {sortedData.map((matches) => (
                         <tr key={matches.name}>
+                            <td>
+                                <img src={getUrl(matches.iconUrl, matches.name)} style= {{width: '50px', height: '50px'}} alt={matches.name}/>
+                            </td>
                             <td>{matches.name}</td>
                             <td>{matches.games}</td>
                             <td>{matches.winrate}%</td>
@@ -43,6 +47,21 @@ export function WinrateTable({type, dataArr}) {
             </table>
         </div>
     )
+}
+
+function getUrl(url, name) {
+    // No ban or champ not found
+    if (url == "" || name == "Unsure") {
+        return "QuestionMark.png";
+    }
+    // Role
+    else if (url == undefined) {
+        return name + ".png";
+    }
+    // Champion
+    else {
+        return url;
+    }
 }
 
 function useSortableData(dataArr, config) {
