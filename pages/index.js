@@ -13,10 +13,8 @@ export default function Home({/* username, totals, winrateArr, roleWinrates, all
 
             
             <main className={styles.main}>
-            <h1 className={styles.title}>
-                Clash winrates lookup
-            </h1>
-            <SearchBar></SearchBar>
+                <img src="ClashTitle.png"></img>
+                <SearchBar></SearchBar>
             </main>
         </div>
   )

@@ -32,7 +32,7 @@ export function WinrateTable({type, dataArr}) {
                         </th>
                     </tr>
                 </thead>
-                <tbody style={{color: "black"}}>
+                <tbody>
                     {sortedData.map((matches) => (
                         <tr key={matches.name}>
                             <td>

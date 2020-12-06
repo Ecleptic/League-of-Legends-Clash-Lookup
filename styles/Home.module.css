@@ -1,5 +1,6 @@
 .container {
-  background: #ffffff;
+  background: #0c0c26;
+  color: #ffffff;
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
@@ -98,6 +99,10 @@
 .card:active {
   color: #0070f3;
   border-color: #0070f3;
+}
+
+.card table {
+  color: #ffffff;
 }
 
 .card h3 {
