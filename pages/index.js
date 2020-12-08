@@ -13,7 +13,7 @@ export default function Home({/* username, totals, winrateArr, roleWinrates, all
 
             
             <main className={styles.main}>
-                <img src="ClashTitle.png"></img>
+                <img src="ClashTitle.png" className={styles.logo}></img>
                 <SearchBar></SearchBar>
             </main>
         </div>

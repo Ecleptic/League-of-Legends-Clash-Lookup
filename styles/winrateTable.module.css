@@ -1,0 +1,41 @@
+.leftButton,
+.rightButton,
+.button {
+  background: #679eff;
+  border: 0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: inherit;
+  padding: 0.5em;
+  min-width: 7em;
+  margin-bottom: 1px;
+}
+
+.ascending::after {
+  content: '▲';
+  position: absolute;
+  display: inline-block;
+}
+
+.descending::after {
+  content: '▼';
+  position: absolute;
+  display: inline-block;
+}
+
+.leftButton {
+    border-radius: 10px 0px 0px 10px;
+}
+
+.rightButton {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.title {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.3em;
+    padding: 0.5em;
+    min-width: 7em;
+    margin-bottom: px;
+}

@@ -1,0 +1,27 @@
+.input {
+    background: #768d99;
+    border: 0.5;
+    border-radius: 10px 0px 0px 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: inherit;
+    padding: 0.5em;
+    margin-bottom: 1px;
+    width: 75%;
+}
+  
+.input::placeholder {
+    color: #000000;
+}
+
+.button {
+    background: #679eff;
+    border: 0;
+    border-radius: 0px 10px 10px 0px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: inherit;
+    padding: 0.5em;
+    margin-bottom: 1px;
+    width: 25%;
+  }

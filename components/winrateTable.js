@@ -1,7 +1,8 @@
 import styles from '../styles/Home.module.css'
+import winrateStyles from '../styles/winrateTable.module.css'
 import { useState, useMemo } from 'react'
 
-export function WinrateTable({type, dataArr}) {
+export function WinrateTable({title, colTitle, dataArr}) {
     // Setup column sorting
     let descSortConfig = {
         key: 'games',
@@ -12,21 +13,31 @@ export function WinrateTable({type, dataArr}) {
     return (
         <div className={styles.card}>
             <table>
+                <caption className={winrateStyles.title}>{title}</caption>
                 <thead>
                     <tr>
                         <th></th>
                         <th>
-                            <button type="button" onClick={() => requestSort('name')} className={getClassNamesFor('name')}>
-                                {type}
+                            <button 
+                                type="button" 
+                                onClick={() => requestSort('name')} 
+                                className={winrateStyles.leftButton + ' ' + getClassNamesFor('name')}>
+                                {colTitle}
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => requestSort('games')} className={getClassNamesFor('games')}>
+                            <button 
+                                type="button" 
+                                onClick={() => requestSort('games')} 
+                                className={winrateStyles.button + ' ' + getClassNamesFor('games')}>
                                 Games
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => requestSort('winrate')} className={getClassNamesFor('winrate')}>
+                            <button 
+                                type="button" 
+                                onClick={() => requestSort('winrate')} 
+                                className={winrateStyles.rightButton + ' ' + getClassNamesFor('winrate')}>
                                 Winrate
                             </button>
                         </th>
@@ -94,12 +105,13 @@ function useSortableData(dataArr, config) {
         setSortConfig({key, desc});
     }
 
+    // Get css for descending/ascending/none
     const getClassNamesFor = (name) => {
         if (sortConfig.key === name) {
-            return sortConfig.desc ? 'descending' : 'ascending';
+            return sortConfig.desc ? winrateStyles.descending : winrateStyles.ascending;
         }
         
-        return 'none';
+        return '';
       };
 
     return { sortedData: sortedItems, requestSort , getClassNamesFor};
