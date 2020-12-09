@@ -1,4 +1,3 @@
-import styles from '../styles/Home.module.css'
 import winrateStyles from '../styles/winrateTable.module.css'
 import { useState, useMemo } from 'react'
 
@@ -11,8 +10,8 @@ export function WinrateTable({title, colTitle, dataArr}) {
     const {sortedData, requestSort, getClassNamesFor} = useSortableData(dataArr, descSortConfig);
 
     return (
-        <div className={styles.card}>
-            <table>
+        <div className={winrateStyles.card}>
+            <table className={winrateStyles.table}>
                 <caption className={winrateStyles.title}>{title}</caption>
                 <thead>
                     <tr>

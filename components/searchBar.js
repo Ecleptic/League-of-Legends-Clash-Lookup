@@ -7,7 +7,7 @@ export function SearchBar() {
     let path = "";
   
     return (
-        <div className={styles.card}>
+        <div className={searchStyle.card}>
             <form onSubmit = {(e) => {
                 e.preventDefault();
                 router.push(path)}}>

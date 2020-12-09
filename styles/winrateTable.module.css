@@ -7,7 +7,7 @@
   font-weight: 700;
   font-size: inherit;
   padding: 0.5em;
-  min-width: 7em;
+  min-width: 5.5em;
   margin-bottom: 1px;
 }
 
@@ -38,4 +38,38 @@
     padding: 0.5em;
     min-width: 7em;
     margin-bottom: px;
+}
+
+.card {
+  margin: 0.5rem;
+  flex-basis: 20%;
+  padding: 0.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.card table {
+  color: #ffffff;
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
