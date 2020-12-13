@@ -1,6 +1,6 @@
 .input {
     background: #768d99;
-    border: 0.5;
+    border: solid;
     border-radius: 10px 0px 0px 10px;
     font-family: inherit;
     font-weight: 700;
@@ -11,12 +11,12 @@
 }
   
 .input::placeholder {
-    color: #000000;
+    color: #0000009f;
 }
 
 .button {
     background: #679eff;
-    border: 0;
+    border: solid;
     border-radius: 0px 10px 10px 0px;
     font-family: inherit;
     font-weight: 700;
