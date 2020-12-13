@@ -42,10 +42,10 @@ export default function SummonerName({ error, errorMessage, summonerName, totals
                     <h3>{totals.games} games, {totals.winrate}% winrate</h3>
 
                     <div className={styles.grid}>
-                        <WinrateTable title="Champion" colTitle="Champ" dataArr={champArr}/>
+                        <WinrateTable title="Champion" colTitle="Champion" dataArr={champArr}/>
                         <WinrateTable title="Role" colTitle="Role" dataArr={roleArr}/>
-                        <WinrateTable title="Enemy bans" colTitle="Champ" dataArr={enemyBanArr}/>
-                        <WinrateTable title="Ally bans" colTitle="Champ" dataArr={allyBanArr}/>
+                        <WinrateTable title="Enemy bans" colTitle="Champion" dataArr={enemyBanArr}/>
+                        <WinrateTable title="Ally bans" colTitle="Champion" dataArr={allyBanArr}/>
                     </div>
                 </main>
             </div>

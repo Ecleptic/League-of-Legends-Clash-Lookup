@@ -15,8 +15,7 @@ export function WinrateTable({title, colTitle, dataArr}) {
                 <caption className={winrateStyles.title}>{title}</caption>
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>
+                        <th colSpan="2">
                             <button 
                                 type="button" 
                                 onClick={() => requestSort('name')} 
