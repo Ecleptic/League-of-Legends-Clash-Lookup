@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { SearchBar } from '../components/searchBar.js'
 
-export default function Home({/* username, totals, winrateArr, roleWinrates, allyBanArr, enemyBanArr */}) {
+export default function Home() {
 
     return (
         <div className={styles.container}>
@@ -13,7 +13,7 @@ export default function Home({/* username, totals, winrateArr, roleWinrates, all
 
             
             <main className={styles.main}>
-                <img src="ClashTitle.png" className={styles.logo}></img>
+                <img src="ClashTitleTransparent.png" className={styles.logo}></img>
                 <SearchBar></SearchBar>
             </main>
         </div>
