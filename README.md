@@ -1,5 +1,7 @@
 # League-of-Legends-Clash-Stats
 
+![](public/HomePageScreenshot.png)
+
 ### Site
 https://clash-lookup.vercel.app/
 
