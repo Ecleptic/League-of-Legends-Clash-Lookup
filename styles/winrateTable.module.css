@@ -25,6 +25,7 @@
 
 .leftButton {
     width: 100%;
+    min-width: 9.5em;
     border-radius: 10px 0px 0px 10px;
 }
 
