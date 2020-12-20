@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import styles from '../styles/Home.module.css'
 import searchStyle from '../styles/searchBar.module.css'
 
 export function SearchBar() {
@@ -8,9 +7,14 @@ export function SearchBar() {
   
     return (
         <div className={searchStyle.card}>
-            <form onSubmit = {(e) => {
-                e.preventDefault();
-                router.push(path)}}>
+            <form onSubmit={
+                (e) => {
+                    e.preventDefault();
+                    if (path != "") {
+                        router.push(path)
+                    }
+                }}>
+
                 <input 
                     type="text"
                     className={searchStyle.input} 

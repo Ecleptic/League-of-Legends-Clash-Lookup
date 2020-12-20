@@ -2,15 +2,16 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { SearchBar } from '../components/searchBar.js'
 import { WinrateTable } from '../components/winrateTable.js'
+import { RoleTable } from '../components/roleTable.js'
 import { Clash } from '../lib/Clash.js'
 
-export default function SummonerName({ error, errorMessage, summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }) {
+export default function SummonerName({ error, errorMessage, summonerName, totals, champArr, roles, allyBanArr, enemyBanArr }) {
     if (error) {
         return (
             <div className={styles.container}>
                 <Head>
-                <title>Clash winrates</title>
-                <link rel="icon" href="/favicon.ico" />
+                    <title>Clash winrates</title>
+                    <link rel="icon" href="/favicon.ico" />
                 </Head>
             
                 <main className={styles.main}>
@@ -28,8 +29,8 @@ export default function SummonerName({ error, errorMessage, summonerName, totals
         return (
             <div className={styles.container}>
                 <Head>
-                <title>Clash winrates</title>
-                <link rel="icon" href="/favicon.ico" />
+                    <title>Clash winrates</title>
+                    <link rel="icon" href="/favicon.ico" />
                 </Head>
             
                 <main className={styles.main}>
@@ -40,10 +41,10 @@ export default function SummonerName({ error, errorMessage, summonerName, totals
                     <SearchBar/>
                 
                     <h3>{totals.games} games, {totals.winrate}% winrate</h3>
+                    <RoleTable roles={roles}/>
 
                     <div className={styles.grid}>
                         <WinrateTable title="Champion" colTitle="Champion" dataArr={champArr}/>
-                        <WinrateTable title="Role" colTitle="Role" dataArr={roleArr}/>
                         <WinrateTable title="Enemy bans" colTitle="Champion" dataArr={enemyBanArr}/>
                         <WinrateTable title="Ally bans" colTitle="Champion" dataArr={allyBanArr}/>
                     </div>
@@ -63,8 +64,8 @@ export async function getServerSideProps(context) {
         return { props: data};
     }
     else {
-        const {totals, champArr, roleArr, allyBanArr, enemyBanArr} = data;
-        return { props: { summonerName, totals, champArr, roleArr, allyBanArr, enemyBanArr }}
+        const {totals, roles, champArr, allyBanArr, enemyBanArr} = data;
+        return { props: { summonerName, totals, roles, champArr, allyBanArr, enemyBanArr }}
     }   
 }
 
