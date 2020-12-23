@@ -60,8 +60,8 @@ export function WinrateTable({title, colTitle, dataArr}) {
 
 function getUrl(url, name) {
     // No ban or champ not found
-    if (url == "" || name == "Unsure") {
-        return "QuestionMark.png";
+    if (url == "") {
+        return "Unsure.png";
     }
     // Role
     else if (url == undefined) {

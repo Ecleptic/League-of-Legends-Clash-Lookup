@@ -7,18 +7,18 @@ export function RoleHover({children, champArr}) {
 
     return (
         <div className={hoverStyles.container}>
-            <div 
-                display="block"
-                height="auto"
-                width="100%"
+            <div
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
 
                 {children}
             </div>
-            {show ? 
+            {/* On hover show champs of this role, prevent showing an empty box if the champArr is empty */}
+            {(show && champArr.length != 0) ? 
                 <div className={hoverStyles.overlay}>
                     <table>
+                        <thead></thead>
+                        <tbody>
                         {champArr.map((champ) => (
                             <tr key={champ.name}>
                                 <td>
@@ -29,6 +29,7 @@ export function RoleHover({children, champArr}) {
                                 <td>{champ.winrate}%</td>
                             </tr>
                         ))}
+                        </tbody>
                     </table>
                 </div>
             : null}

@@ -4,13 +4,14 @@
 }
 
 .overlay {
+    /* left: auto; */
     white-space: nowrap;
     width: fit-content;
     position: absolute;
     margin-top: 150%;
     background: rgba(0, 0, 0, 0.95);
     color: white;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid #0070f3;

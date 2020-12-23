@@ -5,7 +5,7 @@ import { WinrateTable } from '../components/winrateTable.js'
 import { RoleTable } from '../components/roleTable.js'
 import { Clash } from '../lib/Clash.js'
 
-export default function SummonerName({ error, errorMessage, summonerName, totals, champArr, roles, allyBanArr, enemyBanArr }) {
+export default function SummonerName({ error, errorMessage, name, totals, champArr, roles, allyBanArr, enemyBanArr }) {
     if (error) {
         return (
             <div className={styles.container}>
@@ -35,7 +35,7 @@ export default function SummonerName({ error, errorMessage, summonerName, totals
             
                 <main className={styles.main}>
                     <h1 className={styles.title}>
-                        Clash winrates for <span style={{color: "#0070f3"}}>{summonerName}</span>
+                        Clash winrates for <span style={{color: "#0070f3"}}>{name}</span>
                     </h1>
     
                     <SearchBar/>
@@ -64,8 +64,8 @@ export async function getServerSideProps(context) {
         return { props: data};
     }
     else {
-        const {totals, roles, champArr, allyBanArr, enemyBanArr} = data;
-        return { props: { summonerName, totals, roles, champArr, allyBanArr, enemyBanArr }}
+        const {name, totals, roles, champArr, allyBanArr, enemyBanArr} = data;
+        return { props: { name, totals, roles, champArr, allyBanArr, enemyBanArr }}
     }   
 }
 
