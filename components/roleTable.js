@@ -1,4 +1,5 @@
 import winrateStyles from '../styles/winrateTable.module.css'
+import { RoleHover } from './roleHover'
 
 export function RoleTable({roles}) {
     return (
@@ -6,12 +7,36 @@ export function RoleTable({roles}) {
             <table className={winrateStyles.table}>
                 <thead>
                     <tr>
-                        <th><img src="Top.png" style= {{width: '50px', height: '50px'}}/></th>
-                        <th><img src="Jungle.png" style= {{width: '50px', height: '50px'}}/></th>
-                        <th><img src="Middle.png" style= {{width: '50px', height: '50px'}}/></th>
-                        <th><img src="Bottom.png" style= {{width: '50px', height: '50px'}}/></th>
-                        <th><img src="Support.png" style= {{width: '50px', height: '50px'}}/></th>
-                        <th><img src="QuestionMark.png" style= {{width: '50px', height: '50px'}} alt="Unsure" title="Unsure"/></th>
+                        <th>
+                            <RoleHover champArr={roles[0].champArr}>
+                                <img src="Top.png" className={winrateStyles.img}/> 
+                            </RoleHover>
+                        </th>
+                        <th>
+                            <RoleHover champArr={roles[1].champArr}> 
+                                <img src="Jungle.png" className={winrateStyles.img}/> 
+                            </RoleHover>
+                        </th>
+                        <th>
+                            <RoleHover champArr={roles[2].champArr}>
+                                <img src="Middle.png" className={winrateStyles.img}/>
+                            </RoleHover>
+                        </th>
+                        <th>
+                            <RoleHover champArr={roles[3].champArr}>
+                                <img src="Bottom.png" className={winrateStyles.img}/>
+                            </RoleHover>
+                        </th>
+                        <th>
+                            <RoleHover champArr={roles[4].champArr}>
+                                <img src="Support.png" className={winrateStyles.img}/>
+                            </RoleHover>
+                        </th>
+                        <th>
+                            <RoleHover champArr={roles[5].champArr}>
+                                <img src="QuestionMark.png" className={winrateStyles.img} alt="Unsure" title="Unsure"/>
+                            </RoleHover>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

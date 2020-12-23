@@ -45,7 +45,7 @@ export function WinrateTable({title, colTitle, dataArr}) {
                     {sortedData.map((matches) => (
                         <tr key={matches.name}>
                             <td>
-                                <img src={getUrl(matches.iconUrl, matches.name)} style= {{width: '50px', height: '50px'}} alt={matches.name}/>
+                                <img src={getUrl(matches.iconUrl, matches.name)} className={winrateStyles.img} alt={matches.name}/>
                             </td>
                             <td>{matches.name}</td>
                             <td>{matches.games}</td>

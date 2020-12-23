@@ -14,7 +14,7 @@ export default function Home() {
             
             <main className={styles.main}>
                 <img src="ClashTitleTransparent.png" className={styles.logo}></img>
-                <SearchBar></SearchBar>
+                <SearchBar/>
             </main>
         </div>
   )

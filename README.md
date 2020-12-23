@@ -3,7 +3,7 @@
 ![](public/HomePageScreenshot.png)
 
 ### Site
-https://clash-lookup.vercel.app/
+https://clash.tips/
 
 ### Setup
 1. Clone repo
@@ -12,8 +12,6 @@ https://clash-lookup.vercel.app/
 1. Run with `npm run dev`
 1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
 ### Editing
-1. This project uses Next.js, modify `pages/index.js` to modify visuals
+1. This project uses Next.js, modify `pages/` to modify visuals
 1. Modify `lib/` to modify data
