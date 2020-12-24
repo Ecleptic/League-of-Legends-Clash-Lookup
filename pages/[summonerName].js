@@ -48,6 +48,11 @@ export default function SummonerName({ error, errorMessage, name, totals, champA
                         <WinrateTable title="Enemy bans" colTitle="Champion" dataArr={enemyBanArr}/>
                         <WinrateTable title="Ally bans" colTitle="Champion" dataArr={allyBanArr}/>
                     </div>
+                    <div className={styles.card}>
+                    Clash Tips© isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games 
+                    or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all 
+                    associated properties are trademarks or registered trademarks of Riot Games, Inc.
+                    </div>
                 </main>
             </div>
         )

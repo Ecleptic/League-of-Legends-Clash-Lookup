@@ -1,10 +1,14 @@
 .container {
     z-index: 100;
     position: relative;
+    /* transform: translate(100%, 0%); */
 }
 
 .overlay {
-    /* left: auto; */
+    /* right: -200%; */
+    /* right: -13px; */
+    left: auto;
+    right: auto;
     white-space: nowrap;
     width: fit-content;
     position: absolute;
@@ -20,6 +24,8 @@
     position: absolute;
     content: "";
     top: -26px;
+    /* left: auto;
+    right: auto; */
     left: 13px;
     /* left: calc(50% - 13px); */
     border-right: 13px solid transparent;
