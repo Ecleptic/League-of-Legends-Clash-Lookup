@@ -1,5 +1,6 @@
 import hoverStyles from '../styles/hoverCard.module.css'
 import winrateStyles from '../styles/winrateTable.module.css'
+import { getWinrateColor } from '../lib/StyleUtilities.js'
 import { useState } from 'react'
 
 export function RoleHover({children, champArr}) {
@@ -26,7 +27,7 @@ export function RoleHover({children, champArr}) {
                                 </td>
                                 <td>{champ.name}</td>
                                 <td>{champ.games}</td>
-                                <td>{champ.winrate}%</td>
+                                <td style={getWinrateColor(champ.winrate)}>{champ.winrate}%</td>
                             </tr>
                         ))}
                         </tbody>

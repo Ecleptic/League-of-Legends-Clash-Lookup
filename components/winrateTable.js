@@ -1,4 +1,5 @@
 import winrateStyles from '../styles/winrateTable.module.css'
+import { getWinrateColor } from '../lib/StyleUtilities.js'
 import { useState, useMemo } from 'react'
 
 export function WinrateTable({title, colTitle, dataArr}) {
@@ -49,7 +50,7 @@ export function WinrateTable({title, colTitle, dataArr}) {
                             </td>
                             <td>{matches.name}</td>
                             <td>{matches.games}</td>
-                            <td>{matches.winrate}%</td>
+                            <td style={getWinrateColor(matches.winrate)}>{matches.winrate}%</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,5 +1,6 @@
 import winrateStyles from '../styles/winrateTable.module.css'
-import { RoleHover } from './roleHover'
+import { RoleHover } from './roleHover.js'
+import { getWinrateColor } from '../lib/StyleUtilities.js'
 
 export function RoleTable({roles}) {
     return (
@@ -27,7 +28,7 @@ export function RoleTable({roles}) {
                     {/* Winrate */}
                     <tr>
                         {roles.map(role => (
-                            <td key={role.name}>{role.winrate}%</td>
+                            <td style={getWinrateColor(role.winrate)} key={role.name}>{role.winrate}%</td>
                         ))}
                     </tr>
                 </tbody>
