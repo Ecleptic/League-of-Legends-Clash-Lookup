@@ -1,5 +1,5 @@
-import hoverStyles from '../styles/hoverCard.module.css'
-import winrateStyles from '../styles/winrateTable.module.css'
+import HoverStyles from '../styles/HoverCard.module.css'
+import WinrateStyles from '../styles/WinrateTable.module.css'
 import { getWinrateColor } from '../lib/StyleUtilities.js'
 import { useState } from 'react'
 
@@ -18,15 +18,15 @@ export function RoleHover({ children, champArr }) {
             {/* On hover show champs of this role, prevent showing an empty box if the champArr is empty */}
             {(show && champArr.length != 0) ?
                 <>
-                    <div className={hoverStyles.triangle}></div>
-                    <div className={hoverStyles.overlay}>
+                    <div className={HoverStyles.triangle}></div>
+                    <div className={HoverStyles.overlay}>
                         <table>
                             <thead></thead>
                             <tbody>
                                 {champArr.map((champ) => (
                                     <tr key={champ.name}>
                                         <td>
-                                            <img src={champ.iconUrl} className={winrateStyles.img} alt={champ.name} />
+                                            <img src={champ.iconUrl} className={WinrateStyles.img} alt={champ.name} />
                                         </td>
                                         <td>{champ.name}</td>
                                         <td>{champ.games}</td>

@@ -1,4 +1,4 @@
-import winrateStyles from '../styles/winrateTable.module.css'
+import WinrateStyles from '../styles/WinrateTable.module.css'
 import { getWinrateColor } from '../lib/StyleUtilities.js'
 import { useState, useMemo } from 'react'
 
@@ -11,16 +11,16 @@ export function WinrateTable({title, colTitle, dataArr}) {
     const {sortedData, requestSort, getClassNamesFor} = useSortableData(dataArr, descSortConfig);
 
     return (
-        <div className={winrateStyles.card}>
-            <table className={winrateStyles.table}>
-                <caption className={winrateStyles.title}>{title}</caption>
+        <div className={WinrateStyles.card}>
+            <table className={WinrateStyles.table}>
+                <caption className={WinrateStyles.title}>{title}</caption>
                 <thead>
                     <tr>
                         <th colSpan="2">
                             <button 
                                 type="button" 
                                 onClick={() => requestSort('name')} 
-                                className={winrateStyles.leftButton + ' ' + getClassNamesFor('name')}>
+                                className={WinrateStyles.leftButton + ' ' + getClassNamesFor('name')}>
                                 {colTitle}
                             </button>
                         </th>
@@ -28,7 +28,7 @@ export function WinrateTable({title, colTitle, dataArr}) {
                             <button 
                                 type="button" 
                                 onClick={() => requestSort('games')} 
-                                className={winrateStyles.button + ' ' + getClassNamesFor('games')}>
+                                className={WinrateStyles.button + ' ' + getClassNamesFor('games')}>
                                 Games
                             </button>
                         </th>
@@ -36,7 +36,7 @@ export function WinrateTable({title, colTitle, dataArr}) {
                             <button 
                                 type="button" 
                                 onClick={() => requestSort('winrate')} 
-                                className={winrateStyles.rightButton + ' ' + getClassNamesFor('winrate')}>
+                                className={WinrateStyles.rightButton + ' ' + getClassNamesFor('winrate')}>
                                 Winrate
                             </button>
                         </th>
@@ -46,7 +46,7 @@ export function WinrateTable({title, colTitle, dataArr}) {
                     {sortedData.map((matches) => (
                         <tr key={matches.name}>
                             <td>
-                                <img src={getUrl(matches.iconUrl, matches.name)} className={winrateStyles.img} alt={matches.name}/>
+                                <img src={getUrl(matches.iconUrl, matches.name)} className={WinrateStyles.img} alt={matches.name}/>
                             </td>
                             <td>{matches.name}</td>
                             <td>{matches.games}</td>
@@ -107,7 +107,7 @@ function useSortableData(dataArr, config) {
     // Get css for descending/ascending/none
     const getClassNamesFor = (name) => {
         if (sortConfig.key === name) {
-            return sortConfig.desc ? winrateStyles.descending : winrateStyles.ascending;
+            return sortConfig.desc ? WinrateStyles.descending : WinrateStyles.ascending;
         }
         
         return '';

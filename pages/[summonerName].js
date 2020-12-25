@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 // Components
-import { SearchBar } from '../components/searchBar.js'
-import { Rank } from '../components/rank.js'
-import { WinrateTable } from '../components/winrateTable.js'
-import { RoleTable } from '../components/roleTable.js'
+import { SearchBar } from '../components/SearchBar.js'
+import { Rank } from '../components/Rank.js'
+import { WinrateTable } from '../components/WinrateTable.js'
+import { RoleTable } from '../components/RoleTable.js'
 // Libraries
 import { Clash } from '../lib/Clash.js'
 

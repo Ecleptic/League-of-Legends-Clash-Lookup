@@ -1,18 +1,18 @@
-import winrateStyles from '../styles/winrateTable.module.css'
-import { RoleHover } from './roleHover.js'
+import WinrateStyles from '../styles/WinrateTable.module.css'
+import { RoleHover } from './RoleHover.js'
 import { getWinrateColor } from '../lib/StyleUtilities.js'
 
 export function RoleTable({roles}) {
     return (
-        <div className={winrateStyles.card}>
-            <table className={winrateStyles.table}>
+        <div className={WinrateStyles.card}>
+            <table className={WinrateStyles.table}>
                 <tbody>
                     {/* Icons */}
                     <tr>
                         {roles.map(role => (
                             <td key={role.name}>
                                 <RoleHover champArr={role.champArr}>
-                                    <img src={role.name + '.png'} className={winrateStyles.img} alt={role.name}/>
+                                    <img src={role.name + '.png'} className={WinrateStyles.img} alt={role.name}/>
                                 </RoleHover>
                             </td>
                         ))}

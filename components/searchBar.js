@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
-import searchStyle from '../styles/searchBar.module.css'
+import SearchStyle from '../styles/SearchBar.module.css'
 
 export function SearchBar() {
     const router = useRouter();
     let path = "";
   
     return (
-        <div className={searchStyle.card}>
+        <div className={SearchStyle.card}>
             <form onSubmit={
                 (e) => {
                     e.preventDefault();
@@ -17,11 +17,11 @@ export function SearchBar() {
 
                 <input 
                     type="text"
-                    className={searchStyle.input} 
+                    className={SearchStyle.input} 
                     placeholder="Summoner Name" 
                     onChange={(e) => path = e.target.value} 
                 />
-                <button type="submit" className={searchStyle.button}>Search</button>
+                <button type="submit" className={SearchStyle.button}>Search</button>
             </form>
         </div>
     )
