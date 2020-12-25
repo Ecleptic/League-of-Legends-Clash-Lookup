@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { SearchBar } from '../components/searchBar.js'
+import { SearchBar } from '../components/SearchBar.js'
 
 export default function Home() {
 

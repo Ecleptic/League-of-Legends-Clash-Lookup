@@ -2,7 +2,7 @@ import RankStyle from '../styles/Rank.module.css'
 
 export function Rank({ranks}) {
     return (
-        <div>
+        <div className={RankStyle.grid}>
             {ranks.solo != undefined ?
                 <div className={RankStyle.rankIconContainer}>
                     <p>Solo</p>

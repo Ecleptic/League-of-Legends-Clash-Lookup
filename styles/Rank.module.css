@@ -1,6 +1,18 @@
+.grid {
+    display: flex;
+    align-items: normal;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .rankIconContainer {
     margin: 0 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.rankIcon {
+    width: 75px;
+    height: 75px;
 }
