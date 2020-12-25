@@ -8,7 +8,7 @@ import { RoleTable } from '../components/RoleTable.js'
 // Libraries
 import { Clash } from '../lib/Clash.js'
 
-export default function SummonerName({ error, errorMessage, name, ranks, totals, champArr, roles, allyBanArr, enemyBanArr }) {
+export default function SummonerName({ error, errorMessage, name, ranks, totals, champArr, roles, allyBanArr, enemyBanArr, teammates }) {
     if (error) {
         return (
             <div className={styles.container}>
@@ -48,7 +48,8 @@ export default function SummonerName({ error, errorMessage, name, ranks, totals,
                     <RoleTable roles={roles} />
 
                     <div className={styles.grid}>
-                        <WinrateTable title="Champion" colTitle="Champion" dataArr={champArr} />
+                        <WinrateTable title="Champions" colTitle="Champion" dataArr={champArr} />
+                        <WinrateTable title="Teammates" colTitle="Teammate" dataArr={teammates} />
                         <WinrateTable title="Enemy bans" colTitle="Champion" dataArr={enemyBanArr} />
                         <WinrateTable title="Ally bans" colTitle="Champion" dataArr={allyBanArr} />
                     </div>
@@ -73,8 +74,8 @@ export async function getServerSideProps(context) {
         return { props: data };
     }
     else {
-        const { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr } = data;
-        return { props: { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr } }
+        const { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr, teammates } = data;
+        return { props: { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr, teammates } }
     }
 }
 
