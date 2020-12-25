@@ -7,13 +7,14 @@ export function RoleHover({ children, champArr }) {
     const [show, setShow] = useState();
 
     return (
-        <div className={hoverStyles.container}>
+        <div>
             <div
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
 
                 {children}
             </div>
+
             {/* On hover show champs of this role, prevent showing an empty box if the champArr is empty */}
             {(show && champArr.length != 0) ?
                 <>
