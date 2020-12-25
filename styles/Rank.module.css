@@ -1,0 +1,6 @@
+.rankIconContainer {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

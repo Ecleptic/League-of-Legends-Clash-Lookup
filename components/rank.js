@@ -1,19 +1,19 @@
-import styles from '../styles/Home.module.css'
+import RankStyle from '../styles/Rank.module.css'
 
 export function Rank({ranks}) {
     return (
-        <div className={styles.grid}>
+        <div>
             {ranks.solo != undefined ?
-                <div className={styles.rankIconContainer}>
+                <div className={RankStyle.rankIconContainer}>
                     <p>Solo</p>
-                    <img className={styles.rankIcon} src={ranks.solo + ".png"} />
+                    <img className={RankStyle.rankIcon} src={ranks.solo + ".png"} />
                 </div>
                 : null
             }
             {ranks.flex != undefined ?
-                <div className={styles.rankIconContainer}>
+                <div className={RankStyle.rankIconContainer}>
                     <p>Flex</p>
-                    <img className={styles.rankIcon} src={ranks.flex + ".png"} />
+                    <img className={RankStyle.rankIcon} src={ranks.flex + ".png"} />
                 </div>
                 : null
             }
