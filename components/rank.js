@@ -12,7 +12,7 @@ export function Rank({ranks}) {
             }
             {ranks.flex != undefined ?
                 <div className={styles.rankIconContainer}>
-                    <p>Solo</p>
+                    <p>Flex</p>
                     <img className={styles.rankIcon} src={ranks.flex + ".png"} />
                 </div>
                 : null
