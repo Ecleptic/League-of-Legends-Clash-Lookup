@@ -11,7 +11,7 @@ export function SearchBar() {
                 (e) => {
                     e.preventDefault();
                     if (path != "") {
-                        router.push(path)
+                        router.push('/' + path)
                     }
                 }}>
 

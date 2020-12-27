@@ -49,7 +49,6 @@ export default function SummonerName({ error, errorMessage, name, ranks, totals,
 
                     <div className={styles.grid}>
                         <WinrateTable title="Champions" colTitle="Champion" dataArr={champArr} />
-                        <WinrateTable title="Teammates" colTitle="Teammate" dataArr={teammates} />
                         <WinrateTable title="Enemy bans" colTitle="Champion" dataArr={enemyBanArr} />
                         <WinrateTable title="Ally bans" colTitle="Champion" dataArr={allyBanArr} />
                     </div>

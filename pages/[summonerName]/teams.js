@@ -4,6 +4,7 @@ import styles from '../../styles/Home.module.css'
 import { SearchBar } from '../../components/SearchBar.js'
 // import { Rank } from '../../components/Rank.js'
 import { WinrateTable } from '../../components/WinrateTable.js'
+import { TeamsTable } from '../../components/TeamsTable.js'
 // import { RoleTable } from '../../components/RoleTable.js'
 // Libraries
 import { Clash } from '../../lib/Clash.js'
@@ -45,6 +46,7 @@ export default function Teams({ error, errorMessage, name, ranks, totals, champA
 
                     <div className={styles.grid}>
                         <WinrateTable title="Teammates" colTitle="Teammate" dataArr={teammates} />
+                        <TeamsTable/>
                     </div>
                     <div className={styles.card}>
                         Clash Tips© isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games

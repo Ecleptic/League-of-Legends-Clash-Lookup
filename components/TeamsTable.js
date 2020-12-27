@@ -1,33 +1,98 @@
 import WinrateStyles from '../styles/WinrateTable.module.css'
-import { getWinrateColor } from '../lib/StyleUtilities.js'
 
-export function TeamsTable({teams}) {
+export function TeamsTable({}) {
+
+    const teams = [
+        {
+            players: [
+                {
+                    name: "a",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "a",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "a",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "a",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "a",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+            ],
+            games: 10,
+            winrate: 50,
+        },
+        {
+            players: [
+                {
+                    name: "b",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "b",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "b",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "b",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+                {
+                    name: "b",
+                    iconUrl: "Unsure.png",
+                    role: "Unsure.png",
+                },
+            ],
+            games: 20,
+            winrate: 30,
+        }
+    ];
+    
     return (
         <div className={WinrateStyles.card}>
+            <h3>Teams</h3>
             <table className={WinrateStyles.table}>
+                <thead>
+                    <th colSpan="10">Players</th>
+                    <th>Games</th>
+                    <th>Winrate</th>
+                </thead>
                 <tbody>
-                    {/* Icons */}
-                    <tr>
-                        {roles.map(role => (
-                            <td key={role.name}>
-                                    <img src={role.name + '.png'} className={WinrateStyles.img} alt={role.name}/>
-                            </td>
-                        ))}
-                    </tr>
+                    {teams.map(team => (
+                        <tr key="a">
+                            {/* Show players */}
+                            {team.players.map(player => (
+                                <>
+                                    <td>{player.name}</td>
+                                    {/* <td><img src={'../'+player.iconUrl} className={WinrateStyles.img}/></td> */}
+                                    <td><img src={'../'+player.role} className={WinrateStyles.img}/></td>
+                                </>
+                            ))}
 
-                    {/* # games played */}
-                    <tr>
-                        {roles.map(role => (
-                            <td key={role.name}>{role.games}</td>
-                        ))}
-                    </tr>
-
-                    {/* Winrate */}
-                    <tr>
-                        {roles.map(role => (
-                            <td style={getWinrateColor(role.winrate)} key={role.name}>{role.winrate}%</td>
-                        ))}
-                    </tr>
+                            {/* Show # games/winrate */}
+                            <td>{team.games}</td>
+                            <td>{team.winrate}%</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
