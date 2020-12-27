@@ -1,90 +1,85 @@
-import WinrateStyles from '../styles/WinrateTable.module.css'
+import TeamsStyle from '../styles/TeamsTable.module.css'
 
-export function TeamsTable({}) {
+export function TeamsTable({teams}) {
 
-    const teams = [
-        {
-            players: [
-                {
-                    name: "a",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "a",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "a",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "a",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "a",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-            ],
-            games: 10,
-            winrate: 50,
-        },
-        {
-            players: [
-                {
-                    name: "b",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "b",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "b",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "b",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-                {
-                    name: "b",
-                    iconUrl: "Unsure.png",
-                    role: "Unsure.png",
-                },
-            ],
-            games: 20,
-            winrate: 30,
-        }
-    ];
-    
+    // const teams = [
+    //     {
+    //         players: [
+    //             {
+    //                 name: "player a",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //             {
+    //                 name: "player b",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //             {
+    //                 name: "c",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //             {
+    //                 name: "the player d",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //         ],
+    //         games: 10,
+    //         winrate: 50,
+    //     },
+    //     {
+    //         players: [
+    //             {
+    //                 name: "player alpha",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //             {
+    //                 name: "beta",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //             {
+    //                 name: "the player delta",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //             {
+    //                 name: "epsilon",
+    //                 iconUrl: "Unsure.png",
+    //                 role: "Unsure.png",
+    //             },
+    //         ],
+    //         games: 20,
+    //         winrate: 30,
+    //     }
+    // ];
+
     return (
-        <div className={WinrateStyles.card}>
+        <div className={TeamsStyle.card}>
             <h3>Teams</h3>
-            <table className={WinrateStyles.table}>
-                <thead>
-                    <th colSpan="10">Players</th>
-                    <th>Games</th>
-                    <th>Winrate</th>
+            <table className={TeamsStyle.table} style={{width: "100%"}}>
+                <thead style={{ whiteSpace: 'normal'}}>
+                    <tr>
+                        <th>Player 1</th>
+                        <th>Player 2</th>
+                        <th>Player 3</th>
+                        <th>Player 4</th>
+                        <th>Games</th>
+                        <th>Winrate</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {teams.map(team => (
-                        <tr key="a">
+                        <tr key={team.name}>
                             {/* Show players */}
                             {team.players.map(player => (
                                 <>
-                                    <td>{player.name}</td>
+                                    <td>{player}</td>
                                     {/* <td><img src={'../'+player.iconUrl} className={WinrateStyles.img}/></td> */}
-                                    <td><img src={'../'+player.role} className={WinrateStyles.img}/></td>
+                                    {/* <td><img src={'../'+player.role} className={WinrateStyles.img}/></td> */}
                                 </>
                             ))}
 

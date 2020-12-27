@@ -9,7 +9,7 @@ import { TeamsTable } from '../../components/TeamsTable.js'
 // Libraries
 import { Clash } from '../../lib/Clash.js'
 
-export default function Teams({ error, errorMessage, name, ranks, totals, champArr, roles, allyBanArr, enemyBanArr, teammates }) {
+export default function Teams({ error, errorMessage, name, ranks, totals, champArr, roles, allyBanArr, enemyBanArr, teammates, teams }) {
     if (error) {
         return (
             <div className={styles.container}>
@@ -39,14 +39,14 @@ export default function Teams({ error, errorMessage, name, ranks, totals, champA
 
                 <main className={styles.main}>
                     <h1 className={styles.title}>
-                        Clash winrates for <span style={{ color: "#0070f3" }}>{name}</span>
+                        <span style={{ color: "#0070f3" }}>{name}'s</span> clash teams
                     </h1>
 
                     <SearchBar />
-
+                    <TeamsTable teams={teams}/>
                     <div className={styles.grid}>
                         <WinrateTable title="Teammates" colTitle="Teammate" dataArr={teammates} />
-                        <TeamsTable/>
+                        
                     </div>
                     <div className={styles.card}>
                         Clash Tips© isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games
@@ -69,8 +69,8 @@ export async function getServerSideProps(context) {
         return { props: data };
     }
     else {
-        const { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr, teammates } = data;
-        return { props: { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr, teammates } }
+        const { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr, teammates, teams } = data;
+        return { props: { name, totals, ranks, roles, champArr, allyBanArr, enemyBanArr, teammates, teams } }
     }
 }
 
