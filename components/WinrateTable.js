@@ -12,8 +12,8 @@ export function WinrateTable({title, colTitle, dataArr}) {
 
     return (
         <div className={WinrateStyles.card}>
+            <h3>{title}</h3>
             <table className={WinrateStyles.table}>
-                <caption className={WinrateStyles.title}>{title}</caption>
                 <thead>
                     <tr>
                         <th colSpan="2">
