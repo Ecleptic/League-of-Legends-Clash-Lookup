@@ -41,8 +41,8 @@ export default function Teams({ error, errorMessage, name, ranks, totals, champA
                     </h1>
 
                     <SearchBar />
-                    <TeamsTable teams={teams}/>
                     <div className={styles.grid}>
+                        <TeamsTable teams={teams}/>
                         <WinrateTable title="Teammates" colTitle="Teammate" dataArr={teammates} />
                         
                     </div>
